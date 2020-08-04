@@ -1,10 +1,20 @@
-import { Typography, Button } from "@material-ui/core";
+import { Tier } from "../components";
+import { Grid } from "@material-ui/core";
 
 export default function Home() {
   return (
     <div>
-      <Typography variant="h1">Hello World</Typography>
-      <Button color="primary" variant="contained">test</Button>
+      <Grid container spacing={5} alignItems="center" justify="center">
+        <Grid item>
+          <Tier title="Free"></Tier>
+        </Grid>
+        <Grid item>
+          <Tier title="Basic"></Tier>
+        </Grid>
+        <Grid item>
+          <Tier title="Pro"></Tier>
+        </Grid>
+      </Grid>
     </div>
-  )
+  );
 }

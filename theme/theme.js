@@ -20,7 +20,7 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: [
       'Montserrat'
-    ]
+    ],
   }
 });
 

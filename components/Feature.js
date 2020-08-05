@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 
 const Feature = ({value}) => {
   return (
-    <Typography variant="h1" color="textPrimary">{value}</Typography>
+    <Typography variant="subtitle1" color="textSecondary">{value}</Typography>
   );
 }
 

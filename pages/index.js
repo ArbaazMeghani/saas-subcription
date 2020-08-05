@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <Grid container spacing={5} alignItems="center" justify="center">
         <Grid item>
-          <Tier title="Free"></Tier>
+          <Tier title="Free" featuresList={["Feature A", "Feature B"]}></Tier>
         </Grid>
         <Grid item>
           <Tier title="Basic"></Tier>

@@ -9,7 +9,10 @@ const useStyles = makeStyles({
     height: 400,
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     marginLeft: "1%",
-    marginRight: "1%"
+    marginRight: "1%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
   title: {
     fontSize: 32
@@ -24,6 +27,12 @@ const useStyles = makeStyles({
   select: {
     borderRadius: "25px"
   },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100%"
+  }
 });
 
 const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = () => {}}) => {
@@ -31,14 +40,14 @@ const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = () => {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <Typography className={classes.title} variant="h2" color="primary" gutterBottom>
           {title}
-          <div className={classes.content}>
-            <FeatureList features={featuresList} />
-            <Price price={price} />
-          </div>
         </Typography>
+        <div className={classes.content}>
+          <FeatureList features={featuresList} />
+          <Price price={price} />
+        </div>
       </CardContent>
       <CardActions>
         <Button className={classes.select} size="medium" fullWidth color="secondary" variant="contained">Select</Button>

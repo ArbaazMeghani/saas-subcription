@@ -9,10 +9,10 @@ export default function Home() {
           <Tier title="Free" featuresList={["Feature A", "Feature B"]}></Tier>
         </Grid>
         <Grid item>
-          <Tier title="Basic"></Tier>
+          <Tier title="Basic" price="30" featuresList={["Everything in Free and..."]}></Tier>
         </Grid>
         <Grid item>
-          <Tier title="Pro"></Tier>
+          <Tier title="Pro" price="200" featuresList={["Everything in Basic and..."]}></Tier>
         </Grid>
       </Grid>
     </div>

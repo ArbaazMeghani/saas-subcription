@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = () => {}}) => {
+const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = (price) => {console.log(price)}}) => {
   const classes = useStyles();
 
   return (
@@ -50,7 +50,7 @@ const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = () => {
         </div>
       </CardContent>
       <CardActions>
-        <Button className={classes.select} size="medium" fullWidth color="secondary" variant="contained">Select</Button>
+        <Button className={classes.select} onClick={() => onSelect(price)} size="medium" fullWidth color="secondary" variant="contained">Select</Button>
       </CardActions>
     </Card>
   );

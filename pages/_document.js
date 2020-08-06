@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Document, {
   Html, Main, NextScript,
 } from 'next/document';
@@ -8,6 +9,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
+        <Head>
+          <title>Tiered Subsciption</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        </Head>
         <body>
           <Main />
           <NextScript />

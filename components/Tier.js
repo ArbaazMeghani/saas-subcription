@@ -32,6 +32,11 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100%"
+  },
+  titleBreak: {
+    background: "rgb(10,161,42)",
+    background: "linear-gradient(90deg, rgba(10,161,42,1) 0%, rgba(19,145,180,1) 49%, rgba(156,25,189,1) 100%, rgba(0,212,255,1) 100%)",
+    height: "5px"
   }
 });
 
@@ -41,9 +46,12 @@ const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = (price)
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent className={classes.cardContent}>
-        <Typography className={classes.title} variant="h2" color="primary" gutterBottom>
-          {title}
-        </Typography>
+        <div>
+          <Typography className={classes.title} variant="h2" color="primary" gutterBottom>
+            {title}
+          </Typography>
+          <hr className={classes.titleBreak}/>
+        </div>
         <div className={classes.content}>
           <FeatureList features={featuresList} />
           <Price price={price} />

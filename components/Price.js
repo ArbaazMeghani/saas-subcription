@@ -6,7 +6,7 @@ const Price = ({price}) => {
     <div style={{marginTop: "10%"}}>
       <Typography variant="h5" display="inline" color="primary">$</Typography>
       <Typography variant="h2" display="inline" color="primary">{price}</Typography>
-      <Typography variant="h5" display="inline" color="textSecondary">/month</Typography>
+      <Typography variant="h5" display="inline" color="textSecondary">/ month</Typography>
     </div>
   );
 }

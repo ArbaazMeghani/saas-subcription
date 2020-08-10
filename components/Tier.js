@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Typography, makeStyles, CardContent, CardActions, Button } from '@material-ui/core';
 import FeatureList from './FeatureList';
 import Price from './Price';
+import Router from 'next/router'
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +44,11 @@ const useStyles = makeStyles({
 const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = (price) => {console.log(price)}}) => {
   const classes = useStyles();
 
+  const redirect = (event) => {
+    onSelect(price)
+    Router.push("/signup")
+  }
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent className={classes.cardContent}>
@@ -58,7 +64,7 @@ const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = (price)
         </div>
       </CardContent>
       <CardActions>
-        <Button className={classes.select} onClick={() => onSelect(price)} size="medium" fullWidth color="secondary" variant="contained">Select</Button>
+        <Button className={classes.select} onClick={redirect} size="medium" fullWidth color="secondary" variant="contained">Select</Button>
       </CardActions>
     </Card>
   );

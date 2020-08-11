@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { SignUpForm } from '../components';
 
 const signup = () => {
+  const [userInfo, setUserInfo] = useState({
+    page: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    price: ""
+  })
+
+  const updateField = (field, value) => {
+    setUserInfo({...userInfo, [field]: value})
+  }
   return (
-    <div>sign up</div>
+    <SignUpForm userInfo={userInfo} updateField={updateField}/>
   );
 }
 

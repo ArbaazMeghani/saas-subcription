@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { SignUpForm } from '../components';
+import { SignUpForm, PaymentForm, SignUpTier } from '../components';
 
 const signup = () => {
   const [userInfo, setUserInfo] = useState({
-    page: "",
+    page: 1,
+    totalPages: 3,
     email: "",
     password: "",
     passwordConfirm: "",
     price: ""
-  })
+  });
 
   const updateField = (field, value) => {
-    setUserInfo({...userInfo, [field]: value})
+    setUserInfo({...userInfo, [field]: value});
   }
-  return (
-    <SignUpForm userInfo={userInfo} updateField={updateField}/>
-  );
+
+  if(userInfo.page === 0) {
+    return <SignUpForm userInfo={userInfo} updateField={updateField}/>;
+  } else if(userInfo.page === 1) {
+    return <SignUpTier />;
+  } else {
+    return <PaymentForm />;
+  }
 }
 
 export default signup;

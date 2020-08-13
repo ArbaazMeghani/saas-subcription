@@ -13,8 +13,13 @@ const SignUpTier = () => {
           <Tier title="Pro" price="200" featuresList={["Everything in Basic and..."]}></Tier>
         </Grid>
       </Grid>
-      <Grid item>
-          <Button color="secondary">continue with free version -{'>'}</Button>
+      <Grid container style={{ margin: 0, width: '100%'}} spacing={5} alignItems="center" justify="center">
+        <Grid item>
+            <Button variant="contained">Back</Button>
+        </Grid>
+        <Grid item>
+            <Button color="secondary">continue with free version -{'>'}</Button>
+        </Grid>
       </Grid>
     </Grid>
   );

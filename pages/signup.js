@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { SignUpForm, PaymentForm, SignUpTier } from '../components';
 
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
+
 const signup = () => {
   const [userInfo, setUserInfo] = useState({
-    page: 1,
+    page: 2,
     totalPages: 3,
     email: "",
     password: "",
@@ -20,7 +25,11 @@ const signup = () => {
   } else if(userInfo.page === 1) {
     return <SignUpTier />;
   } else {
-    return <PaymentForm />;
+    return (
+      <Elements stripe={stripePromise}>
+        <PaymentForm />
+      </Elements>
+    )
   }
 }
 

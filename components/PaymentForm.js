@@ -1,6 +1,6 @@
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { Button } from '@material-ui/core';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 const useOptions = () => {
   const options = useMemo(
@@ -56,6 +56,7 @@ const PaymentForm = () => {
       <label>
         Card details
         <CardElement
+          style={{width:"500px"}}
           options={options}
           onReady={() => {
             console.log("CardElement [ready]");
@@ -71,8 +72,11 @@ const PaymentForm = () => {
           }}
         />
       </label>
+      <Button>
+        Back
+      </Button>
       <Button type="submit" color="primary" variant="contained" disabled={!stripe}>
-        Pay {"price"}
+        Sign Up
       </Button>
     </form>
   );

@@ -1,5 +1,5 @@
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import React, { useMemo } from 'react';
 
 const useOptions = () => {
@@ -53,31 +53,33 @@ const PaymentForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Card details
-        <CardElement
-          style={{width:"500px"}}
-          options={options}
-          onReady={() => {
-            console.log("CardElement [ready]");
-          }}
-          onChange={event => {
-            console.log("CardElement [change]", event);
-          }}
-          onBlur={() => {
-            console.log("CardElement [blur]");
-          }}
-          onFocus={() => {
-            console.log("CardElement [focus]");
-          }}
-        />
-      </label>
-      <Button>
-        Back
-      </Button>
-      <Button type="submit" color="primary" variant="contained" disabled={!stripe}>
-        Sign Up
-      </Button>
+      <Grid container spacing={5} style={{height: "100vh", width: "100%"}} justify="center" alignItems="center" direction="column">
+        <Grid item>
+          <div style={{ borderBottom: "solid 1px", width: "380px"}}>
+            <CardElement options={{
+              style: {
+                base: {
+                  fontFamily: "Arial",
+                  fontSize: "16px",
+                  color: "#000000"
+                }
+              }
+            }}/>
+          </div>
+        </Grid>
+        <Grid container spacing={5} style={{width: "100%"}} justify="center" alignItems="center">
+          <Grid item>
+            <Button>
+              Back
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button type="submit" color="primary" variant="contained" disabled={!stripe}>
+              Sign Up
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
     </form>
   );
 };

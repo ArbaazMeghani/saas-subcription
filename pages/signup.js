@@ -12,12 +12,12 @@ const signup = () => {
     email: "",
     password: "",
     passwordConfirm: "",
-    price: 0
+    price: 30
   });
 
   const updatePage = (value) => {
     let newPage = userInfo.page
-    if( (newPage === 2 || newPage === 0) && newPage !== 0) {
+    if( (newPage === 2 || newPage === 0) && userInfo.price !== 0) {
       newPage += 2 * value;
     } else {
       newPage += value;

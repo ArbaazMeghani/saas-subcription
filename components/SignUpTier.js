@@ -2,7 +2,7 @@ import React from 'react';
 import Tier from './Tier';
 import { Grid, Button } from '@material-ui/core';
 
-const SignUpTier = () => {
+const SignUpTier = ({updatePage}) => {
   return (
     <Grid  container style={{ margin: 0, width: '100%', height: '100vh'}} spacing={0} alignItems="center" justify="center" direction="column">
       <Grid container style={{ margin: 0, width: '100%'}} spacing={5} alignItems="center" justify="center">
@@ -15,7 +15,7 @@ const SignUpTier = () => {
       </Grid>
       <Grid container style={{ margin: 0, width: '100%'}} spacing={5} alignItems="center" justify="center">
         <Grid item>
-            <Button variant="contained">Back</Button>
+            <Button variant="contained" onClick={() => updatePage(-1)}>Back</Button>
         </Grid>
         <Grid item>
             <Button color="secondary">continue with free version -{'>'}</Button>

@@ -1,9 +1,15 @@
 import React from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 
-const SignUpForm = ({userInfo, updateField}) => {
+const SignUpForm = ({userInfo, updateField, updatePage}) => {
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    updatePage(1)
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Grid container style={{ margin: 0, width: '100%', height: '100vh'}} spacing={5} alignItems="center" justify="center" direction="column">
         <Grid item>
           <TextField required placeholder="email" value={userInfo.email} onChange={(event) => updateField("email", event.target.value)}></TextField>

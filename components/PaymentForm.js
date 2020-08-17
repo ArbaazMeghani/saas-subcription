@@ -1,34 +1,10 @@
+import React from 'react';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { Button, Grid } from '@material-ui/core';
-import React, { useMemo } from 'react';
 
-const useOptions = () => {
-  const options = useMemo(
-    () => ({
-      style: {
-        base: {
-          color: "#424770",
-          letterSpacing: "0.025em",
-          fontFamily: "Source Code Pro, monospace",
-          "::placeholder": {
-            color: "#aab7c4"
-          }
-        },
-        invalid: {
-          color: "#9e2146"
-        }
-      }
-    }),
-    []
-  );
-
-  return options;
-};
-
-const PaymentForm = () => {
+const PaymentForm = ({updatePage}) => {
   const stripe = useStripe();
   const elements = useElements();
-  const options = useOptions();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -69,7 +45,7 @@ const PaymentForm = () => {
         </Grid>
         <Grid container spacing={5} style={{width: "100%"}} justify="center" alignItems="center">
           <Grid item>
-            <Button>
+            <Button onClick={() => updatePage(-1)}>
               Back
             </Button>
           </Grid>

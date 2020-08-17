@@ -2,7 +2,7 @@ import React from 'react';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { Button, Grid } from '@material-ui/core';
 
-const PaymentForm = ({updatePage}) => {
+const PaymentForm = ({price = 0, updatePage}) => {
   const stripe = useStripe();
   const elements = useElements();
 

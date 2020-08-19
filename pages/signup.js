@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SignUpForm, PaymentForm, SignUpTier } from '../components';
 import { useRouter } from 'next/router';
 import {Elements} from '@stripe/react-stripe-js';
@@ -6,7 +6,7 @@ import {loadStripe} from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
 
-const signup = () => {
+const signup = ({props}) => {
   const router = useRouter();
 
   const [userInfo, setUserInfo] = useState({
@@ -16,6 +16,10 @@ const signup = () => {
     passwordConfirm: "",
     price: 0
   });
+
+  useEffect(() => {
+    updateField("price",  router.query.price);
+  },[userInfo.price]);
 
   const updatePage = (value) => {
     let newPage = userInfo.page

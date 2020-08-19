@@ -6,7 +6,7 @@ import {loadStripe} from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
 
-const signup = ({props}) => {
+const signup = () => {
   const router = useRouter();
 
   const [userInfo, setUserInfo] = useState({
@@ -18,6 +18,7 @@ const signup = ({props}) => {
   });
 
   useEffect(() => {
+    console.log(userInfo.price)
     updateField("price",  router.query.price);
   },[userInfo.price]);
 

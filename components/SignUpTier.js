@@ -2,7 +2,7 @@ import React from 'react';
 import Tier from './Tier';
 import { Grid, Button } from '@material-ui/core';
 
-const SignUpTier = ({updateField, updatePage}) => {
+const SignUpTier = ({updateField, updatePage, createAccount}) => {
 
   const handleSelect = (price) => {
     updateField("price", price)
@@ -24,7 +24,7 @@ const SignUpTier = ({updateField, updatePage}) => {
             <Button variant="contained" onClick={() => updatePage(-1)}>Back</Button>
         </Grid>
         <Grid item>
-            <Button color="secondary" onClick={() => updatePage(1)}>continue with free version -{'>'}</Button>
+            <Button color="secondary" onClick={createAccount}>continue with free version -{'>'}</Button>
         </Grid>
       </Grid>
     </Grid>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SignUpForm, PaymentForm, SignUpTier } from '../components';
 import { useRouter } from 'next/router';
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { createAccount } from '../auth'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
 
@@ -37,10 +38,14 @@ const signup = () => {
     setUserInfo({...userInfo, [field]: value});
   }
 
+  const signUp = () => {
+    createAccount(userInfo.email, userInfo.password);
+  }
+
   if(userInfo.page === 0) {
     return <SignUpForm userInfo={userInfo} updateField={updateField} updatePage={updatePage}/>;
   } else if(userInfo.page === 1) {
-    return <SignUpTier updateField={updateField} updatePage={updatePage}/>;
+    return <SignUpTier createAccount={signUp} updateField={updateField} updatePage={updatePage}/>;
   } else {
     return (
       <Elements stripe={stripePromise}>

@@ -43,13 +43,13 @@ const signup = () => {
   }
 
   if(userInfo.page === 0) {
-    return <SignUpForm userInfo={userInfo} updateField={updateField} updatePage={updatePage}/>;
+    return <SignUpForm userInfo={userInfo} updateField={updateField} updatePage={updatePage} createAccount={signUp}/>;
   } else if(userInfo.page === 1) {
-    return <SignUpTier createAccount={signUp} updateField={updateField} updatePage={updatePage}/>;
+    return <SignUpTier updateField={updateField} updatePage={updatePage}/>;
   } else {
     return (
       <Elements stripe={stripePromise}>
-        <PaymentForm updatePage={updatePage}/>
+        <PaymentForm updatePage={updatePage} price={userInfo.price}/>
       </Elements>
     )
   }

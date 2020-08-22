@@ -21,10 +21,7 @@ const SignUpTier = ({updateField, updatePage, createAccount}) => {
       </Grid>
       <Grid container style={{ margin: 0, width: '100%'}} spacing={5} alignItems="center" justify="center">
         <Grid item>
-            <Button variant="contained" onClick={() => updatePage(-1)}>Back</Button>
-        </Grid>
-        <Grid item>
-            <Button color="secondary" onClick={createAccount}>continue with free version -{'>'}</Button>
+            <Button color="secondary">continue with free version -{'>'}</Button>
         </Grid>
       </Grid>
     </Grid>

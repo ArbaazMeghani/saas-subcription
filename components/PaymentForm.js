@@ -28,7 +28,7 @@ const PaymentForm = ({price = 0, updatePage}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit, price}>
       <Grid container spacing={5} style={{height: "100vh", width: "100%"}} justify="center" alignItems="center" direction="column">
         <Grid item>
           <div style={{ borderBottom: "solid 1px", width: "380px"}}>
@@ -45,13 +45,8 @@ const PaymentForm = ({price = 0, updatePage}) => {
         </Grid>
         <Grid container spacing={5} style={{width: "100%"}} justify="center" alignItems="center">
           <Grid item>
-            <Button onClick={() => updatePage(-1)}>
-              Back
-            </Button>
-          </Grid>
-          <Grid item>
             <Button type="submit" color="primary" variant="contained" disabled={!stripe}>
-              Sign Up
+              Pay ${price}
             </Button>
           </Grid>
         </Grid>

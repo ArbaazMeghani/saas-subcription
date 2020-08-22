@@ -1,11 +1,12 @@
 import React from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 
-const SignUpForm = ({userInfo, updateField, updatePage}) => {
+const SignUpForm = ({userInfo, updateField, updatePage, createAccount}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    updatePage(1)
+    createAccount();
+    updatePage(1);
   }
 
   return (
@@ -21,7 +22,7 @@ const SignUpForm = ({userInfo, updateField, updatePage}) => {
           <TextField required placeholder="re-type password" type="password" value={userInfo.passwordConfirm} onChange={(event) => updateField("passwordConfirm", event.target.value)}></TextField>
         </Grid>
         <Grid item>
-          <Button color="primary" variant="contained" type="submit">Next</Button>
+          <Button color="primary" variant="contained" type="submit">Sign Up</Button>
         </Grid>
       </Grid>
     </form>

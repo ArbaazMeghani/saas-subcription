@@ -1,8 +1,9 @@
 import React from 'react';
 import Tier from './Tier';
 import { Grid, Button } from '@material-ui/core';
+import Router from 'next/router'
 
-const SignUpTier = ({updateField, updatePage, createAccount}) => {
+const SignUpTier = ({updateField, updatePage}) => {
 
   const handleSelect = (price) => {
     updateField("price", price)
@@ -21,7 +22,7 @@ const SignUpTier = ({updateField, updatePage, createAccount}) => {
       </Grid>
       <Grid container style={{ margin: 0, width: '100%'}} spacing={5} alignItems="center" justify="center">
         <Grid item>
-            <Button color="secondary">continue with free version -{'>'}</Button>
+            <Button onClick={() => Router.push("/dashboard")} color="secondary">continue with free version -{'>'}</Button>
         </Grid>
       </Grid>
     </Grid>

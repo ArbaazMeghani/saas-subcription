@@ -2,7 +2,7 @@ import React from 'react';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { Button, Grid } from '@material-ui/core';
 
-const PaymentForm = ({price = 0, updatePage}) => {
+const PaymentForm = ({price = 0}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -28,7 +28,7 @@ const PaymentForm = ({price = 0, updatePage}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit, price}>
+    <form onSubmit={handleSubmit}>
       <Grid container spacing={5} style={{height: "100vh", width: "100%"}} justify="center" alignItems="center" direction="column">
         <Grid item>
           <div style={{ borderBottom: "solid 1px", width: "380px"}}>

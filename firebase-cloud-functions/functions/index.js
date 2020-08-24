@@ -1,6 +1,9 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const { default: Stripe } = require('stripe');
+
+const Stripe = require('stripe')(functions.config().stripe.secret, {
+  apiVersion: '2020-03-02',
+});
 
 admin.initializeApp();
 

@@ -1,6 +1,8 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const { default: Stripe } = require('stripe');
-const { admin } = require('firebase-admin/lib/database');
+
+admin.initializeApp();
 
 exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
   const customer = await Stripe.customers.create({ email: user.email });

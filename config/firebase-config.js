@@ -18,6 +18,9 @@ const firebaseConfig = {
 const initializeFirebase = () => {
   try {
     firebase.initializeApp(firebaseConfig);
+    if (process.env.NODE_ENV !== 'production') {
+      firebase.functions().useFunctionsEmulator('http://localhost:5001');
+    }
   } catch(err) {
     console.log(err.message)
   }

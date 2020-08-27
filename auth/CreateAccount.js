@@ -5,8 +5,12 @@ initializeApp()
 
 const auth = firebase.auth()
 
-const createAccount = (email, password) => {
-  auth.createUserWithEmailAndPassword(email, password);
+const createAccount = async (email, password) => {
+  const user = await auth.createUserWithEmailAndPassword(email, password);
+  const createStripeCustomer = firebase.functions().httpsCallable('createStripeCustomer');
+
+  const res = await createStripeCustomer(user);
+  
 }
 
 export default createAccount;

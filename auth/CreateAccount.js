@@ -15,8 +15,7 @@ const createAccount = async (email, password) => {
   const createStripeCustomer = firebase.functions().httpsCallable('createStripeCustomer');
 
   const customer = await createStripeCustomer(JSON.stringify(user));
-  console.log(customer)
-  Cookies.set("userId", user.uid);
+  Cookies.set("customerId", customer.id);
 }
 
 export default createAccount;

@@ -13,7 +13,8 @@ exports.createStripeCustomer = functions.https.onCall(async (user) => {
   const intent = await Stripe.setupIntents.create({
     customer: customer.id,
   });
-  await admin.firestore().collection('stripe_customers').doc(user.uid).set({
+
+  await admin.firestore().collection('stripe_customers').doc(JSON.parse(user).uid).set({
     customer_id: customer.id,
     setup_secret: intent.client_secret,
   });

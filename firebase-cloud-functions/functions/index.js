@@ -7,7 +7,8 @@ const Stripe = require('stripe')(functions.config().stripe.secret, {
 
 admin.initializeApp();
 
-exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
+exports.createStripeCustomer = functions.https.onCall(async (user) => {
+  console.log("createStripeCustomer called with user: " + user);
   const customer = await Stripe.customers.create({ email: user.email });
   const intent = await Stripe.setupIntents.create({
     customer: customer.id,

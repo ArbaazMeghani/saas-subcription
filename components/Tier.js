@@ -41,12 +41,12 @@ const useStyles = makeStyles({
   }
 });
 
-const Tier = ({title = 'title', featuresList = [], price = 0, onSelect = (price) => {console.log(price)}}) => {
+const Tier = ({title = 'title', featuresList = [], price = 0, priceId = "", onSelect = (price) => {console.log(price)}}) => {
   const classes = useStyles();
 
   const redirect = () => {
     onSelect(price)
-    Router.push(`/signup?price=${price}`)
+    Router.push(`/signup?price=${price}&priceId=${priceId}`)
   }
 
   return (

@@ -4,6 +4,8 @@ import initializeApp from '../config/firebase-config'
 import "firebase/auth"
 import "firebase/functions"
 
+import Cookies from 'js-cookie'
+
 initializeApp()
 
 const auth = firebase.auth()
@@ -13,6 +15,7 @@ const createAccount = async (email, password) => {
   const createStripeCustomer = firebase.functions().httpsCallable('createStripeCustomer');
 
   const res = await createStripeCustomer(JSON.stringify(user));
+  Cookies.set("userId", user.uid);
 }
 
 export default createAccount;

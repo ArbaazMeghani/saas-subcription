@@ -17,6 +17,8 @@ exports.createStripeCustomer = functions.https.onCall(async (user) => {
     customer_id: customer.id,
     setup_secret: intent.client_secret,
   });
+
+  return JSON.stringify(customer);
 });
 
 exports.createSubscription = functions.https.onCall(async (customerId, paymentMethodId) => {

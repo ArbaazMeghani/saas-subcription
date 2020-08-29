@@ -21,13 +21,13 @@ exports.createStripeCustomer = functions.https.onCall(async (user) => {
   return JSON.stringify(customer);
 });
 
-exports.createSubscription = functions.https.onCall(async (customerId, paymentMethodId) => {
+exports.createSubscription = functions.https.onCall(async (customerId, priceId, paymentMethodId) => {
   try {
     await Stripe.paymentMethods.attach(paymentMethodId, {
       customer: customerId,
     });
   } catch (error) {
-    return res.status('402').send({ error: { message: error.message } });
+    return JSON.stringify({ error: { message: error.message } });
   }
 
   await Stripe.customers.update(
@@ -41,7 +41,7 @@ exports.createSubscription = functions.https.onCall(async (customerId, paymentMe
 
   const subscription = await Stripe.subscriptions.create({
     customer: customerId,
-    items: [{ price: 'price_HGd7M3DV3IMXkC' }],
+    items: [{ price: priceId }],
     expand: ['latest_invoice.payment_intent'],
   });
 

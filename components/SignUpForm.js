@@ -3,9 +3,9 @@ import { Grid, TextField, Button } from '@material-ui/core';
 
 const SignUpForm = ({userInfo, updateField, updatePage, createAccount}) => {
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    createAccount();
+    await createAccount();
     updatePage(1);
   }
 

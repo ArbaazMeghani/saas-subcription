@@ -38,8 +38,8 @@ const signup = () => {
     setUserInfo({...userInfo, [field]: value});
   }
 
-  const signUp = () => {
-    createAccount(userInfo.email, userInfo.password);
+  const signUp = async () => {
+    await createAccount(userInfo.email, userInfo.password);
   }
 
   if(userInfo.page === 0) {

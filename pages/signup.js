@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SignUpForm, PaymentForm, SignUpTier } from '../components';
+import { SignUpForm, PaymentForm } from '../components';
 import { useRouter } from 'next/router';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -15,23 +15,26 @@ const signup = () => {
     email: "",
     password: "",
     passwordConfirm: "",
-    price: 0
+    price: {
+      id: '',
+      unit_amount_decimal: 0
+    }
   });
 
-  useEffect(() => {
-    console.log(userInfo.price)
-    updateField("price",  router.query.price);
-  },[userInfo.price]);
+  useEffect(() => {setUserInfo(
+    {
+      ...userInfo,
+      price: {
+        id: router.query.priceId,
+        unit_amount_decimal: router.query.price
+      }
+    });
+  },[userInfo.price.id, userInfo.price.unit_amount_decimal]);
 
   const updatePage = (value) => {
-    let newPage = userInfo.page
-    if( (newPage === 2 || newPage === 0) && router.query.price != 0) {
-      newPage += 2 * value;
-    } else {
-      newPage += value;
-    }
+    let newPage = userInfo.page + value;
 
-    setUserInfo({...userInfo, "page": newPage})
+    updateField("page", newPage);
   }
 
   const updateField = (field, value) => {
@@ -44,12 +47,10 @@ const signup = () => {
 
   if(userInfo.page === 0) {
     return <SignUpForm userInfo={userInfo} updateField={updateField} updatePage={updatePage} createAccount={signUp}/>;
-  } else if(userInfo.page === 1) {
-    return <SignUpTier updateField={updateField} updatePage={updatePage}/>;
   } else {
     return (
       <Elements stripe={stripePromise}>
-        <PaymentForm updatePage={updatePage} price={userInfo.price}/>
+        <PaymentForm updatePage={updatePage} price={userInfo.price} priceId={userInfo.priceId}/>
       </Elements>
     )
   }

@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Tier = ({title = 'title', featuresList = [], price = {id: '', unit_amount_decimal: 0}, onSelect = (price) => {console.log(price)}}) => {
+const Tier = ({title = 'title', featuresList = [], price = {id: '', unit_amount_decimal: 0}, onSelect = (price) => {}}) => {
   const classes = useStyles();
 
   const redirect = () => {

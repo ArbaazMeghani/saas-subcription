@@ -17,31 +17,35 @@ exports.createStripeCustomer = functions.https.onCall(async (user) => {
   return JSON.stringify(customer);
 });
 
-exports.createSubscription = functions.https.onCall(async (customerId, priceId, paymentMethodId) => {
+exports.createSubscription = functions.https.onCall(async (paymentInfo) => {
+  paymentInfo = JSON.parse(paymentInfo);
+
   try {
-    await Stripe.paymentMethods.attach(paymentMethodId, {
-      customer: customerId,
-    });
+    await Stripe.paymentMethods.attach(
+      paymentInfo.paymentMethodId,
+      {customer: paymentInfo.customerId}
+    );
   } catch (error) {
+    console.log(error)
     return JSON.stringify({ error: { message: error.message } });
   }
 
   await Stripe.customers.update(
-    customerId, 
+    paymentInfo.customerId, 
     {
       invoice_settings: {
-        default_payment_method: paymentMethodId,
+        default_payment_method: paymentInfo.paymentMethodId,
       },
     }
   );
 
   const subscription = await Stripe.subscriptions.create({
-    customer: customerId,
-    items: [{ price: priceId }],
+    customer: paymentInfo.customerId,
+    items: [{ price: paymentInfo.priceId }],
     expand: ['latest_invoice.payment_intent'],
   });
 
-  return JSON.stringify(subscription);
+  console.log(subscription);
 });
 
 exports.retrievePrice = functions.https.onCall(async (priceId) => {

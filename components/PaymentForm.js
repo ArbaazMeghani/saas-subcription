@@ -1,8 +1,9 @@
 import React from 'react';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import { Button, Grid } from '@material-ui/core';
+import { Subscribe } from '../billing';
 
-const PaymentForm = ({price = 0}) => {
+const PaymentForm = ({price = {id: '', unit_amount_decimal: 0}}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -22,9 +23,11 @@ const PaymentForm = ({price = 0}) => {
 
     if (error) {
       console.log('[error]', error);
-    } else {
-      console.log('[PaymentMethod]', paymentMethod);
+      return;
     }
+    
+    console.log('[PaymentMethod]', paymentMethod);
+    await Subscribe(price.id, paymentMethod.id);
   };
 
   return (
@@ -46,7 +49,7 @@ const PaymentForm = ({price = 0}) => {
         <Grid container spacing={5} style={{width: "100%"}} justify="center" alignItems="center">
           <Grid item>
             <Button type="submit" color="primary" variant="contained" disabled={!stripe}>
-              Pay ${price}
+              Pay ${price.unit_amount_decimal/100}
             </Button>
           </Grid>
         </Grid>

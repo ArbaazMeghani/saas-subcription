@@ -1,12 +1,9 @@
 import * as firebase from "firebase/app";
-import initializeApp from '../config/firebase-config'
 
-import "firebase/auth"
-import "firebase/functions"
+import "firebase/auth";
+import "firebase/functions";
 
-import Cookies from 'js-cookie'
-
-initializeApp()
+import Cookies from 'js-cookie';
 
 const auth = firebase.auth()
 

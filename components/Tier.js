@@ -41,12 +41,12 @@ const useStyles = makeStyles({
   }
 });
 
-const Tier = ({title = 'title', featuresList = [], price = 0, priceId = "", onSelect = (price) => {console.log(price)}}) => {
+const Tier = ({title = 'title', featuresList = [], price = {id: '', unit_amount_decimal: 0}, onSelect = (price) => {console.log(price)}}) => {
   const classes = useStyles();
 
   const redirect = () => {
     onSelect(price)
-    Router.push(`/signup?price=${price}&priceId=${priceId}`)
+    Router.push(`/signup?price=${price.unit_amount_decimal/100}&priceId=${price.id}`)
   }
 
   return (
@@ -60,7 +60,7 @@ const Tier = ({title = 'title', featuresList = [], price = 0, priceId = "", onSe
         </div>
         <div className={classes.content}>
           <FeatureList features={featuresList} />
-          <Price price={price} />
+          <Price price={price.unit_amount_decimal/100} />
         </div>
       </CardContent>
       <CardActions>

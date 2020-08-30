@@ -43,3 +43,12 @@ exports.createSubscription = functions.https.onCall(async (customerId, priceId, 
 
   return JSON.stringify(subscription);
 });
+
+exports.retrievePrice = functions.https.onCall(async (priceId) => {
+  try {
+    const price = await Stripe.prices.retrieve(priceId);
+    return JSON.stringify(price);
+  } catch (error) {
+    return JSON.stringify({ error: { message: error.message } });
+  }
+});

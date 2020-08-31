@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { createAccount } from '../auth'
+import Router from 'next/router'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
 
@@ -41,8 +42,13 @@ const signup = () => {
     setUserInfo({...userInfo, [field]: value});
   }
 
-  const signUp = async () => {
+  const signUp = async (next) => {
     await createAccount(userInfo.email, userInfo.password);
+    if(userInfo.price.unit_amount_decimal == 0) {
+      Router.push(`/dashboard`);
+    } else {
+      next();
+    }
   }
 
   if(userInfo.page === 0) {
@@ -50,7 +56,7 @@ const signup = () => {
   } else {
     return (
       <Elements stripe={stripePromise}>
-        <PaymentForm updatePage={updatePage} price={userInfo.price} priceId={userInfo.priceId}/>
+        <PaymentForm updatePage={updatePage} price={userInfo.price}/>
       </Elements>
     )
   }

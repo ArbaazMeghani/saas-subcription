@@ -5,8 +5,7 @@ const SignUpForm = ({userInfo, updateField, updatePage, createAccount}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await createAccount();
-    updatePage(1);
+    await createAccount(() => updatePage(1));
   }
 
   return (

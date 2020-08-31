@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Button, Grid } from '@material-ui/core';
 import { Subscribe } from '../billing';
 
@@ -26,7 +26,6 @@ const PaymentForm = ({price = {id: '', unit_amount_decimal: 0}}) => {
       return;
     }
     
-    console.log('[PaymentMethod]', paymentMethod);
     await Subscribe(price.id, paymentMethod.id);
   };
 

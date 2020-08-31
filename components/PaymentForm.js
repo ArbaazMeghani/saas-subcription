@@ -2,6 +2,7 @@ import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Button, Grid } from '@material-ui/core';
 import { Subscribe } from '../billing';
+import Router from 'next/router';
 
 const PaymentForm = ({price = {id: '', unit_amount_decimal: 0}}) => {
   const stripe = useStripe();
@@ -27,6 +28,7 @@ const PaymentForm = ({price = {id: '', unit_amount_decimal: 0}}) => {
     }
     
     await Subscribe(price.id, paymentMethod.id);
+    Router.push(`/dashboard`)
   };
 
   return (

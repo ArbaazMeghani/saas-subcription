@@ -46,7 +46,7 @@ const Tier = ({title = 'title', featuresList = [], price = {id: '', unit_amount_
 
   const redirect = () => {
     onSelect(price)
-    Router.push(`/signup?price=${price.unit_amount_decimal/100}&priceId=${price.id}`)
+    Router.push(`/signup?price=${price.unit_amount_decimal}&priceId=${price.id}`)
   }
 
   return (

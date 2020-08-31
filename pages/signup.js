@@ -3,8 +3,8 @@ import { SignUpForm, PaymentForm } from '../components';
 import { useRouter } from 'next/router';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { createAccount } from '../auth'
-import Router from 'next/router'
+import { createAccount } from '../auth';
+import Router from 'next/router';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
 

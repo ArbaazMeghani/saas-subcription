@@ -7,8 +7,6 @@ import Cookies from 'js-cookie';
 const Subscribe = async (priceId, paymentMethodId) => {
   const createSubscription = firebase.functions().httpsCallable('createSubscription');
   const customerId = Cookies.get("customerId");
-  console.log("customerId");
-  console.log(customerId);
 
   await createSubscription(JSON.stringify({
     customerId: customerId,

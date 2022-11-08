@@ -13,7 +13,7 @@
     "@stripe/stripe-js": "^1.8.0",
     "firebase": "^7.17.2",
     "js-cookie": "^2.2.1",
-    "next": "9.5.1",
+    "next": "13.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "stripe": "^8.84.0"
